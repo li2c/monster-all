@@ -1,13 +1,17 @@
 package com.personal.monsterapi.consumer;
 
 import com.alibaba.dubbo.common.URL;
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.registry.Registry;
+import com.alibaba.dubbo.registry.RegistryFactory;
 import com.alibaba.dubbo.rpc.RpcContext;
-import com.personal.service.CallbackListener;
-import com.personal.service.ICallbackService;
-import com.personal.service.IDubboTest;
+import com.personal.service.*;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
@@ -19,18 +23,26 @@ public class DubboConsumer {
     @Reference
     private ICallbackService callbackService;
 
+    @Reference(stub = "com.personal.monsterapi.consumer.Stub")
+    private StubService stubService;
+
+    @Reference
+//            (mock="com.personal.monsterapi.consumer.Mock")
+    private MockService mockService;
+
     public Object  testEchoService(String s){
+        //线程池测试：
 //        EchoService echoService=(EchoService)dubboTest;
 //        return echoService.$echo(s);
-//        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(20,30, 5,TimeUnit.SECONDS,new LinkedBlockingDeque());
-//        for (int i=0;i<20;i++){
-//            threadPoolExecutor.execute(new Runnable() {
-//                @Override
-//                public void run() {
-//                    dubboTest.dubboTest();
-//                }
-//            });
-//        }
+        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(20,30, 5, TimeUnit.SECONDS,new LinkedBlockingDeque());
+        for (int i=0;i<20;i++){
+            threadPoolExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    dubboTest.dubboTest();
+                }
+            });
+        }
         //
         RpcContext.getContext().setAttachment("lcc", "enigne");
         dubboTest.dubboTest();
@@ -48,6 +60,7 @@ public class DubboConsumer {
         return dubboTest.loadBanlance();
     }
 
+    //参数回调
     public Object callback(){
         callbackService.addListener("test", new CallbackListener() {
             @Override
@@ -55,6 +68,23 @@ public class DubboConsumer {
                 System.out.println("this is a callback test");
             }
         });
+        return "success";
+    }
+
+    //本地存根
+    public Object stub(){
+        stubService.stubTest();
+        return "success";
+    }
+
+    public Object mock(){
+       return mockService.mockTest();
+    }
+
+    public Object dynamicMock(){
+        RegistryFactory registryFactory = ExtensionLoader.getExtensionLoader(RegistryFactory.class).getAdaptiveExtension();
+        Registry registry = registryFactory.getRegistry(URL.valueOf("zookeeper://localhost:2181"));
+        registry.register(URL.valueOf("override://192.168.1.103/com.personal.service.MockService?application=api-test&check=false&dubbo=2.6.0&interface=com.personal.service.MockService&methods=mockTest&pid=47349&side=consumer&timestamp=1591113907771&mock=force:return+null&category=configurators&dynamic=false"));
         return "success";
     }
 

@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Configurable
@@ -29,6 +31,9 @@ public class DubboConfig implements InitializingBean {
     public ApplicationConfig  getApplicationConfig(){
         ApplicationConfig applicationConfig=new ApplicationConfig();
         applicationConfig.setName("api-test");
+        Map  map=new HashMap();
+        map.put("dump.directory","/Users/lichengcheng/Applications/record/dubbo-access/stack");
+        applicationConfig.setParameters(map);
         return applicationConfig;
     }
 
@@ -37,6 +42,8 @@ public class DubboConfig implements InitializingBean {
         ProtocolConfig protocolConfig=new ProtocolConfig();
         protocolConfig.setPort(20880);
         protocolConfig.setName("dubbo");
+        protocolConfig.setAccesslog("/Users/lichengcheng/Applications/record/dubbo-access/log");
+        protocolConfig.setThreads(2);
         return protocolConfig;
     }
 
@@ -73,5 +80,6 @@ public class DubboConfig implements InitializingBean {
         service.setRegistry(getRegistryConfig());
         service.setRef(iCallbackService);
         service.export();
+
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class DubboConfig {
@@ -23,6 +25,8 @@ public class DubboConfig {
     public ApplicationConfig  getApplicationConfig(){
         ApplicationConfig applicationConfig=new ApplicationConfig();
         applicationConfig.setName("api-test");
+        Map map=new HashMap();
+        map.put("dump.directory","/Users/lichengcheng/Applications/record/dubbo-access/stack");
         return applicationConfig;
     }
 

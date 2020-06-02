@@ -20,4 +20,19 @@ public class ExtendController {
     public Object callback(){
         return dubboConsumer.callback();
     }
+
+    @RequestMapping("stub")
+    public Object stub(){
+        return dubboConsumer.stub();
+    }
+
+    @RequestMapping("mock")
+    public Object mock(){
+        return dubboConsumer.mock();
+    }
+
+    @RequestMapping("dynamicMock")
+    public Object dynamicMock(){
+        return dubboConsumer.dynamicMock();
+    }
 }
