@@ -30,19 +30,22 @@ public class DubboConsumer {
 //            (mock="com.personal.monsterapi.consumer.Mock")
     private MockService mockService;
 
+    @Reference(cluster = "failfast",retries = 0)
+    private RedisOpsService redisOpsService;
+
     public Object  testEchoService(String s){
         //线程池测试：
 //        EchoService echoService=(EchoService)dubboTest;
 //        return echoService.$echo(s);
-        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(20,30, 5, TimeUnit.SECONDS,new LinkedBlockingDeque());
-        for (int i=0;i<20;i++){
-            threadPoolExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    dubboTest.dubboTest();
-                }
-            });
-        }
+//        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(20,30, 5, TimeUnit.SECONDS,new LinkedBlockingDeque());
+//        for (int i=0;i<20;i++){
+//            threadPoolExecutor.execute(new Runnable() {
+//                @Override
+//                public void run() {
+//                    dubboTest.dubboTest();
+//                }
+//            });
+//        }
         //
         RpcContext.getContext().setAttachment("lcc", "enigne");
         dubboTest.dubboTest();
@@ -85,6 +88,16 @@ public class DubboConsumer {
         RegistryFactory registryFactory = ExtensionLoader.getExtensionLoader(RegistryFactory.class).getAdaptiveExtension();
         Registry registry = registryFactory.getRegistry(URL.valueOf("zookeeper://localhost:2181"));
         registry.register(URL.valueOf("override://192.168.1.103/com.personal.service.MockService?application=api-test&check=false&dubbo=2.6.0&interface=com.personal.service.MockService&methods=mockTest&pid=47349&side=consumer&timestamp=1591113907771&mock=force:return+null&category=configurators&dynamic=false"));
+        return "success";
+    }
+
+    public Object redis(){
+       redisOpsService.subscribe();
+        return "success";
+    }
+
+    public  Object transcation(){
+        redisOpsService.transaction();
         return "success";
     }
 

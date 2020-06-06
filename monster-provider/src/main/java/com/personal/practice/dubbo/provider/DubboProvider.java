@@ -3,6 +3,7 @@ package com.personal.practice.dubbo.provider;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.personal.service.IDubboTest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
 
 @Service(register=false,registry="myRegistryConfig",group = "test",cluster = "failover")
 public class DubboProvider implements IDubboTest {
-    @Resource(name = "redisTemplate2")
+    @Resource
     private RedisTemplate redisTemplate;
 
 
@@ -24,6 +25,9 @@ public class DubboProvider implements IDubboTest {
         System.out.println(jedisConnectionFactory.getPoolConfig().toString());
 
         redisTemplate.opsForValue().set("name","lcc");
+        System.out.println(redisTemplate.opsForValue().get("name"));
+        redisTemplate.opsForHash().put("info","job","code");
+        System.out.println( redisTemplate.opsForHash().get("info","job"));
         System.out.println("666666");
         System.out.println(RpcContext.getContext().getAttachment("lcc"));
     }

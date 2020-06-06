@@ -35,4 +35,14 @@ public class ExtendController {
     public Object dynamicMock(){
         return dubboConsumer.dynamicMock();
     }
+
+    @RequestMapping("redis")
+    public Object redis(){
+        return dubboConsumer.redis();
+    }
+
+    @RequestMapping("transcation")
+    public Object transcation(){
+        return dubboConsumer.transcation();
+    }
 }

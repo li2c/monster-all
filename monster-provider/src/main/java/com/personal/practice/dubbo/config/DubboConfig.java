@@ -43,7 +43,7 @@ public class DubboConfig implements InitializingBean {
         protocolConfig.setPort(20880);
         protocolConfig.setName("dubbo");
         protocolConfig.setAccesslog("/Users/lichengcheng/Applications/record/dubbo-access/log");
-        protocolConfig.setThreads(2);
+//        protocolConfig.setThreads(2);
         return protocolConfig;
     }
 
