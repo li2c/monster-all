@@ -7,4 +7,8 @@ public interface RedisOpsService {
     void subscribe();
 
     void transaction();
+
+    void watch();
+
+    void sentinel();
 }

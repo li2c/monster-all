@@ -101,4 +101,15 @@ public class DubboConsumer {
         return "success";
     }
 
+    public Object watch(){
+        redisOpsService.watch();
+        return "success";
+    }
+
+    public Object sentinel(){
+        redisOpsService.sentinel();
+        return "success";
+
+    }
+
 }

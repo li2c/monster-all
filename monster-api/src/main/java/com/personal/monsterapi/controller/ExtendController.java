@@ -45,4 +45,14 @@ public class ExtendController {
     public Object transcation(){
         return dubboConsumer.transcation();
     }
+
+    @RequestMapping("watch")
+    public Object watch(){
+        return dubboConsumer.watch();
+    }
+
+    @RequestMapping("sentinel")
+    public Object sentinel(){
+        return dubboConsumer.sentinel();
+    }
 }
