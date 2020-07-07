@@ -55,4 +55,19 @@ public class ExtendController {
     public Object sentinel(){
         return dubboConsumer.sentinel();
     }
+
+    @RequestMapping("mq")
+    public Object mq(){
+        return dubboConsumer.mq();
+    }
+    @RequestMapping("asynmq")
+    public Object asynmq(){
+        return dubboConsumer.asynmq();
+    }
+    @RequestMapping("oneWaySend")
+    public Object oneWaySend(){
+        return dubboConsumer.oneWaySend();
+    }
+
+
 }

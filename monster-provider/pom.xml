@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -29,10 +30,21 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
 <!--        </dependency>-->
+        <!--mvc-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -56,12 +68,14 @@
 <!--        <version>2.5.3</version>-->
 <!--        </dependency>-->
 
+        <!--zookeeper-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>3.4.6</version>
         </dependency>
 
+        <!--dubbo-->
         <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>dubbo</artifactId>
@@ -79,15 +93,28 @@
             <artifactId>monster-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+
+
+
+        <!--mq-->
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.4.0</version>
         </dependency>
 
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
+            <groupId>com.alibaba.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>3.2.6</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.rocketmq</groupId>-->
+<!--            <artifactId>rocketmq-tools</artifactId>-->
+<!--            <version>3.2.5</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

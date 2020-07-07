@@ -33,6 +33,9 @@ public class DubboConsumer {
     @Reference(cluster = "failfast",retries = 0)
     private RedisOpsService redisOpsService;
 
+    @Reference(cluster = "failfast",retries = 0)
+    private RocketMqService mqService;
+
     public Object  testEchoService(String s){
         //线程池测试：
 //        EchoService echoService=(EchoService)dubboTest;
@@ -111,5 +114,21 @@ public class DubboConsumer {
         return "success";
 
     }
+
+    public Object mq(){
+        mqService.sendmqMessage();
+        return "success";
+    }
+
+    public Object asynmq(){
+        mqService.sendAsynMessage();
+        return "success";
+    }
+
+    public Object oneWaySend(){
+        mqService.sendOneWay();
+        return "success";
+    }
+
 
 }
