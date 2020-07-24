@@ -1,15 +1,17 @@
 package com.personal.practice.nio;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.SocketChannel;
 
 
 /**
  * 单从这里来看实际上与多路复用I/O没有任何联系。
  */
 public class FileChannelControl {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         File source=new File("nio.txt");
         System.out.println(source.getAbsoluteFile());
         RandomAccessFile file= null;
@@ -30,6 +32,7 @@ public class FileChannelControl {
             buffer.flip();
             System.out.println("转换读写模式瘦的buffer:"+buffer);
             //随着写操作 随机流的文件读写指针也指到了最后
+            //TODO 无法保证write()方法一次能向FileChannel写入多少字节
             fileChannel.write(buffer);
             System.out.println("执行完写操作之后的buffer"+buffer);
             System.out.println("执行完写操作之后的随机读写流"+fileChannel.position());
@@ -46,12 +49,19 @@ public class FileChannelControl {
 //            while (buffer.hasRemaining()){
 //                System.out.print(buffer.getChar());
 //            }
+            //用完FileChannel后必须将其关闭。
+            fileChannel.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+
+
         }
 
 
     }
+
+
 }
