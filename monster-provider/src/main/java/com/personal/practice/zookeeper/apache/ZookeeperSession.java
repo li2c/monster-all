@@ -18,7 +18,7 @@ public class ZookeeperSession {
     }
 
     public static ZooKeeper getSesson() throws IOException {
-        ZooKeeper zookeeper=new ZooKeeper("localhost:2181",5000,new Watcher(1));
+        ZooKeeper zookeeper=new ZooKeeper("localhost:2182",5000,new Watcher(1));
         System.out.println(zookeeper.getState());
         try {
             Watcher.countDownLatch.await();
@@ -34,7 +34,7 @@ public class ZookeeperSession {
 //            System.out.println(zookeeperCorrect.getState());
 //
 //            //TODO 不sleep的话 主进程结束无法接受zk的事件
-//            Thread.sleep(Integer.MAX_VALUE);
+            Thread.sleep(Integer.MAX_VALUE);
 
         } catch (InterruptedException e) {
             System.out.println("Zookeeper sessoin established");

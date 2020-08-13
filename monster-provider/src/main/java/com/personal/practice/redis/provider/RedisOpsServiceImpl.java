@@ -2,12 +2,15 @@ package com.personal.practice.redis.provider;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.personal.service.RedisOpsService;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -194,4 +197,13 @@ public class RedisOpsServiceImpl implements RedisOpsService {
             System.out.println(redisTemplate.opsForValue().increment("sentinel"));
         }
     }
+
+    public <T> T lua(String fileClasspath, Class<T> returnType, List<String> keys, Object ... values){
+        DefaultRedisScript<T> redisScript=new DefaultRedisScript();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource(fileClasspath)));
+        redisScript.setResultType(returnType);
+        return (T) redisTemplate.execute(redisScript,keys,values);
+    }
+
+
 }

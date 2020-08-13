@@ -19,7 +19,7 @@ public class MqConsumer {
         consumer.setNamesrvAddr("localhost:9876");
 
         // Subscribe one more more topics to consume.
-        consumer.subscribe("monster", "*");
+        consumer.subscribe("twoMaster", "*");
         // Register callback to execute on arrival of messages fetched from brokers.
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 

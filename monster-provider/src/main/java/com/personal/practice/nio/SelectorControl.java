@@ -52,6 +52,10 @@ public class SelectorControl {
 
     public static class Client{
         public static void main(String[] args) {
+            Thread thread=new Thread();
+            ThreadLocal t=new ThreadLocal();
+//            t.set();
+
             SocketChannel socketChannel = null;
             try {
                 socketChannel = SocketChannel.open();

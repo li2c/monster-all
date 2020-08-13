@@ -1,5 +1,6 @@
 package com.personal.practice.spi;
 
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.personal.practice.spi.inter.SpiInterface;
 
 
@@ -21,22 +22,27 @@ public class Spi   extends ClassLoader  implements SpiInterface{
     }
 
     public static void main(String[] args) {
-        ServiceLoader<SpiInterface> loaders = ServiceLoader.load(SpiInterface.class);
-        for (SpiInterface spi : loaders) {
-            spi.spiTest();
-        }
-        Spi spi=new Spi();
-        try {
-            spi.loadClass("test.class");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        ServiceLoader<SpiInterface> loaders = ServiceLoader.load(SpiInterface.class);
+//        for (SpiInterface spi : loaders) {
+//            spi.spiTest();
+//        }
+//        Spi spi=new Spi();
+//        try {
+//            spi.loadClass("test.class");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
 //        Thread t=new Thread();
-        System.out.println(Thread.currentThread().getContextClassLoader());
+//        System.out.println(Thread.currentThread().getContextClassLoader());
 //        DriverManager.getConnection();
-        new Thread();
-        spi.getClass().getClassLoader();
-    }
+//        new Thread();
+//        spi.getClass().getClassLoader();
 
+        //dubbo spi
+        ExtensionLoader<SpiInterface> extensionLoader =
+                ExtensionLoader.getExtensionLoader(SpiInterface.class);
+        SpiInterface test = extensionLoader.getExtension("test2");
+        test.spiTest();
+    }
 }

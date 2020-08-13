@@ -15,7 +15,7 @@ public class SynchronousSender  implements RocketMqService {
 
     public static void main(String[] args) {
         SynchronousSender synchronousSender=new SynchronousSender();
-        synchronousSender.sendmqMessage();
+        synchronousSender.sendAsynMessage();
     }
     public void sendmqMessage() {
         DefaultMQProducer producer = new DefaultMQProducer(System.currentTimeMillis()+"");
@@ -58,7 +58,7 @@ public class SynchronousSender  implements RocketMqService {
         }
         for (int i=0;i<1000;i++){
             Message message = new Message();
-            message.setTopic("monster");
+            message.setTopic("twoMaster");
             message.setBody(("第" + i + "个Asynmessage").getBytes());
             message.setTags("monster-a");
             try {
@@ -73,6 +73,7 @@ public class SynchronousSender  implements RocketMqService {
                         System.out.println(throwable.getMessage());
                     }
                 });
+                Thread.sleep(5000);
             } catch (MQClientException e) {
                 e.printStackTrace();
             } catch (RemotingException e) {
