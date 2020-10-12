@@ -8,12 +8,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @EnableDubbo
 @SpringBootApplication
 public class MonsterProviderApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(MonsterProviderApplication.class, args);
 
-        ClassPathXmlApplicationContext c=new ClassPathXmlApplicationContext("");
-        c.getBean("");
+//        ClassPathXmlApplicationContext c=new ClassPathXmlApplicationContext("");
+
     }
 
 }

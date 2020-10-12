@@ -2,12 +2,13 @@ package com.personal.practice.spring.circle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 public class CircleTest {
 
 }
-//
+
 //@Component
 //class A{
 //    @Autowired
@@ -19,7 +20,7 @@ public class CircleTest {
 //    @Autowired
 //    private A a;
 //}
-
+//
 //@Component
 //class C{
 //   C(D d){
@@ -34,21 +35,21 @@ public class CircleTest {
 //    }
 //}
 
-@Service
-@Scope("prototype")
-class E{
-    @Autowired
-    private F f;
+//@Service
+//@Scope("prototype")
+//class E{
+//    @Autowired
+//    private F f;
+//
+//}
 
-}
-
-@Service
-@Scope("prototype")
-class F{
-    @Autowired
-    private E e;
-
-}
+//@Service
+//@Scope("prototype")
+//class F{
+//    @Autowired
+//    private E e;
+//
+//}
 
 @Service
 @Scope("prototype")

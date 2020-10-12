@@ -10,6 +10,11 @@ import com.alibaba.rocketmq.common.message.Message;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
 import com.personal.service.RocketMqService;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Service
 public class SynchronousSender  implements RocketMqService {
 
@@ -18,6 +23,8 @@ public class SynchronousSender  implements RocketMqService {
         synchronousSender.sendAsynMessage();
     }
     public void sendmqMessage() {
+        Stack stack=new Stack();
+//        LinkedList
         DefaultMQProducer producer = new DefaultMQProducer(System.currentTimeMillis()+"");
         producer.setNamesrvAddr("127.0.0.1:9876");
         try {
