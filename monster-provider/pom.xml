@@ -83,11 +83,11 @@
         <version>2.6.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.9</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.101tec</groupId>-->
+<!--            <artifactId>zkclient</artifactId>-->
+<!--            <version>0.9</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.personal</groupId>
@@ -135,6 +135,12 @@
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>4.1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -147,6 +153,12 @@
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-transaction-xa-core</artifactId>
             <version>4.1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -157,28 +169,45 @@
 <!--        </dependency>-->
 
         <!--base-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shardingsphere</groupId>-->
+<!--            <artifactId>sharding-transaction-base-seata-at</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>io.seata</groupId>-->
+<!--            <artifactId>seata-rm-datasource</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.seata</groupId>-->
+<!--            <artifactId>seata-tm</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.seata</groupId>-->
+<!--            <artifactId>seata-codec-all</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-transaction-base-seata-at</artifactId>
-            <version>4.1.1</version>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>1.0.12</version>
         </dependency>
 
         <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-rm-datasource</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-tm</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-codec-all</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>1.7.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-annotation-aspectj</artifactId>
+            <version>1.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>

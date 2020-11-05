@@ -1,8 +1,10 @@
 package com.personal.practice.entity;
 
+import java.math.BigDecimal;
+
 public class Student {
     private String name;
-    private int age;
+    private BigDecimal age;
     private int score;
     private int money;
     public String getName() {
@@ -13,13 +15,7 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public int getScore() {
         return score;
@@ -35,5 +31,23 @@ public class Student {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public BigDecimal getAge() {
+        return age;
+    }
+
+    public void setAge(BigDecimal age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", score=" + score +
+                ", money=" + money +
+                '}';
     }
 }

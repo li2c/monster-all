@@ -11,6 +11,7 @@ public class MonsterProviderApplication {
     public static void main(String[] args) {
         SpringApplication.run(MonsterProviderApplication.class, args);
 
+
 //        ClassPathXmlApplicationContext c=new ClassPathXmlApplicationContext("");
 
     }

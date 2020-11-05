@@ -16,6 +16,7 @@ import org.springframework.data.redis.core.SessionCallback;
 import sun.nio.ch.ThreadPool;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -48,7 +49,7 @@ class PracticeApplicationTests implements ApplicationContextAware {
 
     @Test
     void mysqlTest(){
-        for (int i=1;i<50;i++) {
+        for (int i=1;i<2;i++) {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -58,7 +59,7 @@ class PracticeApplicationTests implements ApplicationContextAware {
                         StudentMapper studentMapper=applicationContext.getBean(StudentMapper.class);
                         System.out.println(studentMapper.toString());
                         Student student = new Student();
-                        student.setAge(1);
+                        student.setAge(new BigDecimal(1));
                         student.setName("dasd");
                         student.setMoney(random.nextInt(100));
                         student.setScore(i);
@@ -75,6 +76,15 @@ class PracticeApplicationTests implements ApplicationContextAware {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void decimalTest(){
+        StudentMapper studentMapper=applicationContext.getBean(StudentMapper.class);
+        System.out.println(studentMapper.toString());
+        List<Student>  students= studentMapper.listStudent();
+        System.out.println(students);
+    }
+
 
     @Test
     void transactionTest(){

@@ -17,4 +17,8 @@
         insert into Student(name,age,money,score) value (#{student.name},#{student.age},#{student.money},#{student.score})
     </insert>
 
+    <select id="listStudent" resultType="com.personal.practice.entity.Student">
+        select * from student0 limit 10;
+    </select>
+
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 @Service
@@ -44,7 +45,7 @@ public class TransactionServiceImpl implements TransactionService, ApplicationCo
         StudentMapper studentMapper=applicationContext.getBean(StudentMapper.class);
         System.out.println(studentMapper.toString());
         Student student = new Student();
-        student.setAge(1);
+        student.setAge(new BigDecimal(1));
         student.setName("dasd");
 
         student.setMoney(random.nextInt(100));
@@ -60,7 +61,7 @@ public class TransactionServiceImpl implements TransactionService, ApplicationCo
         StudentMapper studentMapper=applicationContext.getBean(StudentMapper.class);
         System.out.println(studentMapper.toString());
         Student student = new Student();
-        student.setAge(1);
+        student.setAge(new BigDecimal(1));
         student.setName("dasd");
 
         student.setMoney(random.nextInt(100));
