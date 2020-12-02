@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+//@Component
 public class LifeTest implements  BeanFactoryPostProcessor, InstantiationAwareBeanPostProcessor, BeanNameAware,BeanFactoryAware , BeanPostProcessor, InitializingBean, DisposableBean {
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {

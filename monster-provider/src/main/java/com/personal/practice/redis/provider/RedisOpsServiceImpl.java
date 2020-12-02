@@ -57,7 +57,6 @@ public class RedisOpsServiceImpl implements RedisOpsService {
 //            });
 //        }
 
-//        事务
         for (int i=0;i<1;i++) {
             threadPoolExecutor.execute(new Runnable() {
                 @Override
